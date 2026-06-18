@@ -467,7 +467,7 @@ result = add_five(multiply_two(3))  # 3*2 = 6, 6+5 = 11</code></pre>
 a, b = 0, 1
 count = 0
 print(f"Fibonacci sequence up to {n} terms:")
-while count < n:
+while count &lt; n:
     print(a, end=" ")
     a, b = b, a + b
     count += 1</code></pre>
@@ -527,7 +527,7 @@ else:
                                 <li><strong>With while loop:</strong></li>
                             </ul>
                             <pre><code>n = 0
-while n < 3:
+while n &lt; 3:
     print(n)
     n += 1
 else:
@@ -556,9 +556,9 @@ print(f"USN: {usn}")
 print(f"Total Marks: {total}")
 print(f"Percentage: {percentage:.2f}%")
 
-if percentage >= 75:
+if percentage &gt;= 75:
     print("Grade: A (Excellent)")
-elif percentage >= 60:
+elif percentage &gt;= 60:
     print("Grade: B (Good)")
 else:
     print("Grade: C (Average)")</code></pre>
@@ -586,7 +586,7 @@ else:
                                 <li><strong>Nested if:</strong> if inside another if</li>
                             </ul>
                             <pre><code>x = 10
-if x > 5:
+if x &gt; 5:
     print("x is greater than 5")
 elif x == 5:
     print("x equals 5")
@@ -603,17 +603,17 @@ else:
                             <pre><code># str() - converts to string
 num = 123
 s = str(num)  # "123"
-print(type(s))  # <class 'str'>
+print(type(s))  # &lt;class 'str'&gt;
 
 # int() - converts to integer
 s = "456"
 num = int(s)  # 456
-print(type(num))  # <class 'int'>
+print(type(num))  # &lt;class 'int'&gt;
 
 # float() - converts to float
 s = "3.14"
 f = float(s)  # 3.14
-print(type(f))  # <class 'float'>
+print(type(f))  # &lt;class 'float'&gt;
 
 # Examples
 print(str(100))        # "100"
@@ -638,7 +638,7 @@ print(float("3.5"))    # 3.5</code></pre>
                                     <ul><li>Example: <code>"Hi" * 3</code> → "HiHiHi"</li></ul>
                                 </li>
                                 <li><strong>Comparison:</strong> Using <code>==</code>, <code>&lt;</code>, <code>&gt;</code> operators
-                                    <ul><li>Example: <code>"abc" < "def"</code> → True (alphabetical order)</li></ul>
+                                    <ul><li>Example: <code>"abc" &lt; "def"</code> → True (alphabetical order)</li></ul>
                                 </li>
                             </ul>
                         </div>
@@ -851,7 +851,7 @@ print(student["name"]) # Lookup</code></pre>
                             </ul>
                             <pre><code>import numpy as np
 arr = np.array([1, 2, 3, 4, 5, 6])
-mask = arr > 3           # Boolean mask: [F,F,F,T,T,T]
+mask = arr &gt; 3           # Boolean mask: [F,F,F,T,T,T]
 filtered = arr[mask]     # Result: [4, 5, 6]</code></pre>
                         </div>
                     </div>
@@ -923,17 +923,17 @@ for word, count in top_3:
 arr = np.array([10, 25, 5, 30, 15, 8, 40])
 print(f"Original array: {arr}")
 
-# Mask: elements > 15
-mask = arr > 15
+# Mask: elements &gt; 15
+mask = arr &gt; 15
 filtered = arr[mask]
-print(f"Elements > 15: {filtered}")
+print(f"Elements &gt; 15: {filtered}")
 
 # Mask: even numbers
 even_mask = arr % 2 == 0
 print(f"Even numbers: {arr[even_mask]}")
 
 # Conditional filtering
-result = arr[(arr > 10) & (arr < 35)]
+result = arr[(arr &gt; 10) &amp; (arr &lt; 35)]
 print(f"Between 10 and 35: {result}")</code></pre>
                         </div>
                     </div>
@@ -1079,8 +1079,8 @@ for dirpath, dirnames, filenames in os.walk("C:/Users/rishi/Documents"):
                             <ul>
                                 <li><strong>Assertions:</strong> Check if condition is true, raise AssertionError if false
                                     <pre><code>x = 5
-assert x > 0, "x must be positive"
-assert x < 10, "x must be less than 10"</code></pre>
+assert x &gt; 0, "x must be positive"
+assert x &lt; 10, "x must be less than 10"</code></pre>
                                 </li>
                                 <li><strong>Compressing Files:</strong> Reduce file size using compression
                                     <pre><code>import zipfile
@@ -1298,7 +1298,7 @@ def cube(n):
     return n ** 3
 
 def factorial(n):
-    if n <= 1:
+    if n &lt;= 1:
         return 1
     return n * factorial(n - 1)</code></pre>
                             <p><strong>File 2: main.py</strong></p>
@@ -1323,7 +1323,7 @@ print(factorial(5))             # 120</code></pre>
                             <h4>✅ Answer (8 marks):</h4>
                             <p><strong>File 1: math_operations.py</strong></p>
                             <pre><code>def factorial(n):
-    if n <= 1:
+    if n &lt;= 1:
         return 1
     return n * factorial(n - 1)</code></pre>
                             <p><strong>File 2: binomial.py</strong></p>
@@ -1331,7 +1331,7 @@ print(factorial(5))             # 120</code></pre>
 
 def binomial_coefficient(n, r):
     """Calculate C(n,r) = n! / (r! * (n-r)!)"""
-    if r > n:
+    if r &gt; n:
         return 0
     return factorial(n) // (factorial(r) * factorial(n - r))
 
@@ -1368,7 +1368,7 @@ result = divide(10, 0)
 
 # Output:
 # Traceback (most recent call last):
-#   File "script.py", line 5, in <module>
+#   File "script.py", line 5, in &lt;module&gt;
 #     result = divide(10, 0)
 #   File "script.py", line 2, in divide
 #     return a / b
@@ -1638,7 +1638,7 @@ for animal in animals:
     
     # Modifier: Changes object state
     def withdraw(self, amount):
-        if amount <= self.balance:
+        if amount &lt;= self.balance:
             self.balance -= amount
             return self.balance
         return "Insufficient funds"
