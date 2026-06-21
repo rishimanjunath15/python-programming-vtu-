@@ -1182,10 +1182,61 @@ print(new_tup)  # (10, 20, 30, 'hello', 40)</code></pre>
 
             <!-- MODULE 4 -->
             <div id="module4" class="module-section">
-                <div class="module-title">📚 MODULE - 4: Modules, Namespaces & Object-Oriented Basics</div>
+                <div class="module-title">📚 MODULE - 4: File Handling, Debugging & OOP Basics</div>
 
                 <div class="section-a">
-                    <h3>SECTION A: Theory Questions (4-5 Marks)</h3>
+                    <h3>SECTION A: Q7</h3>
+
+                    <div class="question-block">
+                        <div class="question-title">Q7.a: Random & Time Modules</div>
+                        <div class="answer-section">
+                            <p><strong>Question:</strong> Explain the use of random and time modules in Python. Develop a program that simulates a simple stopwatch that records random time intervals and calculates the average elapsed.</p>
+                            <h4>✅ Answer (8 marks):</h4>
+                            <ul>
+                                <li><strong>random module:</strong> Generates random numbers and values.</li>
+                                <li><strong>time module:</strong> Measures time and adds delays.</li>
+                                <li>Use both to simulate elapsed intervals and compute average duration.</li>
+                            </ul>
+                            <pre><code>import random
+import time
+
+intervals = []
+for i in range(3):
+    elapsed = random.uniform(1.0, 4.0)
+    intervals.append(elapsed)
+    print(f"Interval {i + 1}: {elapsed:.2f} seconds")
+    time.sleep(elapsed)
+
+average = sum(intervals) / len(intervals)
+print(f"Average elapsed time: {average:.2f} seconds")</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <div class="question-title">Q7.b: Namespaces & LEGB Rule</div>
+                        <div class="answer-section">
+                            <p><strong>Question:</strong> Explain the concept of namespaces in Python. Develop program to illustrate how variable lookup follows the LEGB (Local, Enclosing, Global, Built-in) rule.</p>
+                            <h4>✅ Answer (8 marks):</h4>
+                            <ul>
+                                <li><strong>Namespace:</strong> A mapping from names to objects.</li>
+                                <li><strong>LEGB rule:</strong> Python resolves names by searching Local, Enclosing, Global, then Built-in scopes.</li>
+                            </ul>
+                            <pre><code>x = "Global"
+
+def outer():
+    x = "Enclosing"
+
+    def inner():
+        x = "Local"
+        print("Inner:", x)
+
+    inner()
+    print("Outer:", x)
+
+outer()
+print("Global:", x)</code></pre>
+                        </div>
+                    </div>
 
                     <div class="question-block">
                         <div class="question-title">Q7.c: Class Attribute vs Instance Attribute</div>
@@ -1193,104 +1244,32 @@ print(new_tup)  # (10, 20, 30, 'hello', 40)</code></pre>
                             <p><strong>Question:</strong> Differentiate between class attribute and instance attribute with suitable program segments.</p>
                             <h4>✅ Answer (4 marks):</h4>
                             <pre><code>class Student:
-    college = "XYZ College"  # Class attribute
+    college = "ABC College"  # Class attribute
+
     def __init__(self, name):
-        self.name = name     # Instance attribute</code></pre>
+        self.name = name     # Instance attribute
+
+s1 = Student("Alice")
+s2 = Student("Bob")
+print(Student.college)
+print(s1.name, s2.name)</code></pre>
                             <ul>
-                                <li><strong>Difference:</strong>
-                                    <ul>
-                                        <li>Class: shared memory, accessed via <code>Class.attribute</code> or <code>obj.attribute</code></li>
-                                        <li>Instance: individual memory, accessed via <code>obj.attribute</code></li>
-                                        <li>Changing class attribute affects all instances; changing instance affects only that object</li>
-                                    </ul>
-                                </li>
+                                <li><strong>Class attribute</strong> is shared by all objects of the class.</li>
+                                <li><strong>Instance attribute</strong> is specific to each object.</li>
                             </ul>
-                        </div>
-                    </div>
-
-                    <div class="question-block">
-                        <div class="question-title">Q8.c: 'is' vs '==' Operators</div>
-                        <div class="answer-section">
-                            <p><strong>Question:</strong> Explain difference between 'is' and '==' using immutable objects.</p>
-                            <h4>✅ Answer (4 marks):</h4>
-                            <ul>
-                                <li><strong><code>==</code>:</strong> Compares VALUES (content)</li>
-                                <li><strong><code>is</code>:</strong> Compares IDENTITY (memory location)</li>
-                            </ul>
-                            <pre><code>a = 5
-b = 5
-print(a == b)      # True (same value)
-print(a is b)      # True (same object - Python caches small integers)
-
-x = "hello"
-y = "hello"
-print(x == y)      # True (same value)
-print(x is y)      # True (string interning in Python)</code></pre>
-                        </div>
-                    </div>
-
-                    <div class="question-block">
-                        <div class="question-title">Q7.a: Random & Time Modules</div>
-                        <div class="answer-section">
-                            <p><strong>Question:</strong> Explain use of random and time modules in Python. Develop program simulating stopwatch.</p>
-                            <h4>✅ Answer (4-8 marks):</h4>
-                            <pre><code>import random
-import time
-
-# Random module: generates random numbers
-# time module: works with time delays and timing
-
-print("Simple Stopwatch Simulator:")
-num_intervals = 3
-times = []
-
-for i in range(num_intervals):
-    interval = random.uniform(1, 5)  # Random delay 1-5 seconds
-    times.append(interval)
-    print(f"Interval {i+1}: {interval:.2f} seconds")
-    time.sleep(interval)
-
-avg_time = sum(times) / len(times)
-print(f"Average time: {avg_time:.2f} seconds")</code></pre>
-                        </div>
-                    </div>
-
-                    <div class="question-block">
-                        <div class="question-title">Q7.b: Namespaces & LEGB Rule</div>
-                        <div class="answer-section">
-                            <p><strong>Question:</strong> Explain namespaces in Python. Develop program illustrating LEGB rule.</p>
-                            <h4>✅ Answer (4-8 marks):</h4>
-                            <pre><code># LEGB: Local, Enclosing, Global, Built-in
-
-x = "Global"  # Global scope
-
-def outer():
-    x = "Enclosing"  # Enclosing scope
-    
-    def inner():
-        x = "Local"  # Local scope
-        print(x)     # Finds 'Local' first (L)
-    
-    inner()
-    print(x)         # Finds 'Enclosing' (E)
-
-outer()
-print(x)             # Finds 'Global' (G)
-
-# Python searches: Local → Enclosing → Global → Built-in</code></pre>
                         </div>
                     </div>
                 </div>
 
                 <div class="section-b">
-                    <h3>SECTION B: Programming Questions (8 Marks)</h3>
+                    <h3>OR</h3>
 
                     <div class="question-block">
                         <div class="question-title">Q8.a: Custom Module Creation</div>
                         <div class="answer-section">
-                            <p><strong>Question:</strong> Create utilities.py with functions for square, cube, factorial. Import in another file using all 3 variants.</p>
+                            <p><strong>Question:</strong> Develop python script to create a module <code>utilities.py</code> with functions for square, cube, and factorial of a number. Import it in another file using all three import variants. Demonstrate the usage of each of the imported function.</p>
                             <h4>✅ Answer (8 marks):</h4>
-                            <p><strong>File 1: utilities.py</strong></p>
+                            <p><strong>utilities.py</strong></p>
                             <pre><code>def square(n):
     return n ** 2
 
@@ -1301,44 +1280,60 @@ def factorial(n):
     if n &lt;= 1:
         return 1
     return n * factorial(n - 1)</code></pre>
-                            <p><strong>File 2: main.py</strong></p>
-                            <pre><code># Import variant 1: Import entire module
-import utilities
-print(utilities.square(5))      # 25
+                            <p><strong>main.py</strong></p>
+                            <pre><code>import utilities
+print(utilities.square(5))
 
-# Import variant 2: Import specific functions
-from utilities import square, cube
-print(square(4))                # 16
+from utilities import cube
+print(cube(3))
 
-# Import variant 3: Import all
 from utilities import *
-print(factorial(5))             # 120</code></pre>
+print(factorial(4))</code></pre>
                         </div>
                     </div>
 
                     <div class="question-block">
                         <div class="question-title">Q8.b: Custom Module for Binomial Coefficient</div>
                         <div class="answer-section">
-                            <p><strong>Question:</strong> Develop custom module with factorial function. Import to calculate binomial coefficient.</p>
+                            <p><strong>Question:</strong> Develop a custom module having function which calculates factorial of a number. Import this custom module to a program to calculate binomial coefficient.</p>
                             <h4>✅ Answer (8 marks):</h4>
-                            <p><strong>File 1: math_operations.py</strong></p>
+                            <p><strong>math_operations.py</strong></p>
                             <pre><code>def factorial(n):
     if n &lt;= 1:
         return 1
     return n * factorial(n - 1)</code></pre>
-                            <p><strong>File 2: binomial.py</strong></p>
+                            <p><strong>binomial.py</strong></p>
                             <pre><code>from math_operations import factorial
 
 def binomial_coefficient(n, r):
-    """Calculate C(n,r) = n! / (r! * (n-r)!)"""
     if r &gt; n:
         return 0
     return factorial(n) // (factorial(r) * factorial(n - r))
 
 n = int(input("Enter n: "))
 r = int(input("Enter r: "))
-result = binomial_coefficient(n, r)
-print(f"C({n},{r}) = {result}")</code></pre>
+print(f"C({n},{r}) = {binomial_coefficient(n, r)}")</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <div class="question-title">Q8.c: 'is' vs '==' Operators</div>
+                        <div class="answer-section">
+                            <p><strong>Question:</strong> Explain the difference between <code>is</code> and <code>==</code> operators using immutable objects.</p>
+                            <h4>✅ Answer (4 marks):</h4>
+                            <ul>
+                                <li><strong><code>==</code>:</strong> Compares values/content.</li>
+                                <li><strong><code>is</code>:</strong> Compares object identity.</li>
+                            </ul>
+                            <pre><code>a = 5
+b = 5
+print(a == b)  # True
+print(a is b)  # True
+
+x = "hello"
+y = "hello"
+print(x == y)  # True
+print(x is y)  # Often True due to string interning</code></pre>
                         </div>
                     </div>
                 </div>
@@ -1392,75 +1387,107 @@ result = divide(10, 0)
                     </div>
 
                     <div class="question-block">
-                        <div class="question-title">Q9.a: __init__ and __str__ Methods</div>
+                        <div class="question-title">Q9.a: Point Class & Mutability</div>
                         <div class="answer-section">
-                            <p><strong>Question:</strong> Interpret the significance of __init__() and __str__() method with example.</p>
-                            <h4>✅ Answer (4-5 marks):</h4>
-                            <ul>
-                                <li><strong>__init__():</strong> Constructor method, initializes object attributes
-                                    <ul><li>Called automatically when object is created</li></ul>
-                                </li>
-                                <li><strong>__str__():</strong> String representation method
-                                    <ul><li>Called when print() or str() is used on object</li></ul>
-                                </li>
-                            </ul>
-                            <pre><code>class Student:
-    def __init__(self, name, marks):
-        self.name = name
-        self.marks = marks
-    
-    def __str__(self):
-        return f"Student: {self.name}, Marks: {self.marks}"
-
-s = Student("John", 85)  # __init__ called
-print(s)  # __str__ called - output: Student: John, Marks: 85</code></pre>
-                        </div>
-                    </div>
-
-                    <div class="question-block">
-                        <div class="question-title">Q9.c: Operator Overloading</div>
-                        <div class="answer-section">
-                            <p><strong>Question:</strong> What is operator overloading? Illustrate with example using <code>__add__()</code>.</p>
-                            <h4>✅ Answer (4 marks):</h4>
-                            <ul>
-                                <li><strong>Definition:</strong> Redefining operators (+, -, *, etc.) to work with custom objects</li>
-                                <li><strong>Method:</strong> Use special methods like <code>__add__()</code>, <code>__sub__()</code>, etc.</li>
-                            </ul>
+                            <p><strong>Question:</strong> Create a Python class Point with attributes x and y. Demonstrate sameness using <code>is</code> operator, and show the effect of mutability when modifying one reference.</p>
+                            <h4>✅ Answer (8 marks):</h4>
                             <pre><code>class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-    
-    def __add__(self, other):
-        return Point(self.x + other.x, self.y + other.y)
-    
-    def __str__(self):
-        return f"({self.x}, {self.y})"
 
-p1 = Point(1, 2)
-p2 = Point(3, 4)
-p3 = p1 + p2  # Calls __add__()
-print(p3)      # (4, 6)</code></pre>
+p1 = Point(3, 4)
+p2 = p1
+p3 = Point(3, 4)
+
+print(p1 is p2)  # True
+print(p1 is p3)  # False
+
+p1.x = 5
+print(p1.x, p2.x)  # Both changed because p2 points to same object
+print(p3.x)        # Unchanged</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <div class="question-title">Q9.b: Exception Handling</div>
+                        <div class="answer-section">
+                            <p><strong>Question:</strong> Explain the need for exception handling in Python. Develop a program to illustrate <code>try</code>, <code>except</code>, <code>else</code>, and <code>finally</code> blocks.</p>
+                            <h4>✅ Answer (8 marks):</h4>
+                            <pre><code>try:
+    num1 = int(input("Enter dividend: "))
+    num2 = int(input("Enter divisor: "))
+    result = num1 / num2
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero")
+except ValueError:
+    print("Error: Enter valid integers")
+else:
+    print(f"Result: {result}")
+finally:
+    print("Division operation completed")</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <div class="question-title">Q10.a: Polymorphism</div>
+                        <div class="answer-section">
+                            <p><strong>Question:</strong> Develop a program to illustrate polymorphism by defining a common interface method in two different classes.</p>
+                            <h4>✅ Answer (8 marks):</h4>
+                            <pre><code>class Animal:
+    def sound(self):
+        pass
+
+class Dog(Animal):
+    def sound(self):
+        return "Woof!"
+
+class Cat(Animal):
+    def sound(self):
+        return "Meow!"
+
+animals = [Dog(), Cat()]
+for animal in animals:
+    print(animal.sound())</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <div class="question-title">Q10.b: Pure Functions vs Modifiers</div>
+                        <div class="answer-section">
+                            <p><strong>Question:</strong> Outline the difference between pure functions and modifiers. Develop a program code illustrating both using a class BankAccount.</p>
+                            <h4>✅ Answer (8 marks):</h4>
+                            <pre><code>class BankAccount:
+    def __init__(self, balance):
+        self.balance = balance
+
+    def calculate_interest(self, rate):
+        return self.balance * (1 + rate / 100)
+
+    def deposit(self, amount):
+        self.balance += amount
+        return self.balance
+
+account = BankAccount(1000)
+print(account.calculate_interest(5))  # Pure function
+print(account.balance)               # Unchanged
+account.deposit(500)                 # Modifier function
+print(account.balance)               # Changed</code></pre>
                         </div>
                     </div>
 
                     <div class="question-block">
                         <div class="question-title">Q10.c: Finally Clause Role</div>
                         <div class="answer-section">
-                            <p><strong>Question:</strong> Explain role of finally clause with example.</p>
+                            <p><strong>Question:</strong> Explain the role of finally clause with an example.</p>
                             <h4>✅ Answer (4 marks):</h4>
-                            <ul>
-                                <li><strong>Purpose:</strong> Execute code regardless of whether exception occurs</li>
-                                <li><strong>Usage:</strong> Always executes after try/except blocks</li>
-                                <li><strong>Common use:</strong> Clean up resources (close files, release connections)</li>
-                            </ul>
                             <pre><code>try:
     file = open("file.txt", "r")
     data = file.read()
 except FileNotFoundError:
     print("File not found")
 finally:
-    file.close()  # Always executes</code></pre>
+    file.close()</code></pre>
                         </div>
                     </div>
                 </div>

@@ -1,542 +1,174 @@
 # PYTHON PROGRAMMING - COMBINED EXAM REVISION GUIDE
 ## 1BPLC105B/205B | Time: 3 Hours | Max Marks: 100
 
-**Instructions:** Answer any FIVE full questions, choosing at least ONE from each MODULE
+## MODULE - 4: File Handling, Debugging & OOP Basics
 
----
+### **SECTION A: Q7**
 
-## MODULE - 1: Python Basics & Control Flow
+#### Q7.a: os.walk()
+**Question:** Demonstrate the working of os.walk() with example.
 
-### **SECTION A: Theory Questions (4-5 Marks)**
-
-#### Q1.a: Type Conversion in Python
-**Question:** Explain type conversion. Differentiate between implicit and explicit conversion with examples.
-
-**Answer (4-5 marks):**
-- **Type Conversion:** Converting one data type to another
-- **Implicit Conversion:** Python automatically converts (no code needed)
-  - Example: `x = 5 + 2.5` → x becomes 7.5 (int + float = float)
-- **Explicit Conversion:** Programmer explicitly converts using functions
-  - `int()`, `float()`, `str()`, `bool()`
-  - Example: `str(123)` → "123", `int("45")` → 45
-- **Key difference:** Implicit is automatic; explicit requires function calls
-- **Implicit risk:** Can lose data (float to int), explicit gives control
-
-#### Q1.c: Syntax Error vs Runtime Error
-**Question:** Differentiate between syntax error and runtime error with examples.
-
-**Answer (4 marks):**
-- **Syntax Error:**
-  - Caught before program runs (during parsing)
-  - Example: `if x = 5:` (missing colon), `print("hello` (unclosed quote)
-  - Program won't execute at all
-- **Runtime Error:**
-  - Occurs during program execution
-  - Example: `1/0` (ZeroDivisionError), `int("abc")` (ValueError)
-  - Program starts but crashes during execution
-
-#### Q2.c: Function Composition
-**Question:** What is function composition? Illustrate with an example.
-
-**Answer (4 marks):**
-- **Definition:** Combining two or more functions where output of one becomes input of another
-- **Syntax:** `result = f(g(x))`
-- **Example:**
-  ```python
-  def add_five(x):
-      return x + 5
-  def multiply_two(x):
-      return x * 2
-  
-  result = add_five(multiply_two(3))  # 3*2 = 6, 6+5 = 11
-  ```
-- **Benefits:** Code reusability, cleaner logic
-
----
-
-### **SECTION B: Programming Questions (8 Marks)**
-
-#### Q1.b: Fibonacci Sequence
-**Question:** Develop a program with while loop to display Fibonacci sequence up to n terms.
-
-**Answer (8 marks):**
+**Answer (10 marks):**
+- **os.walk()** traverses a directory tree top to bottom.
+- It returns a tuple of **current directory**, **subdirectories**, and **files**.
+- It is useful for searching files and processing folders recursively.
 ```python
-n = int(input("Enter number of terms: "))
-a, b = 0, 1
-count = 0
-print(f"Fibonacci sequence up to {n} terms:")
-while count < n:
-    print(a, end=" ")
-    a, b = b, a + b
-    count += 1
+import os
+## MODULE - 4: File Handling, Debugging & OOP Basics
+
+### **SECTION A: Q7**
+
+#### Q7.a: os.walk()
+**Question:** Demonstrate the working of os.walk() with example.
+
+**Answer (10 marks):**
+- **os.walk()** traverses a directory tree top to bottom.
+- It returns a tuple of **current directory**, **subdirectories**, and **files**.
+- It is useful for searching files and processing folders recursively.
+```python
+import os
+
+root_dir = "."
+
+for current_path, subdirs, files in os.walk(root_dir):
+    print("Current Path:", current_path)
+    print("Subdirectories:", subdirs)
+    print("Files:", files)
+    print("-" * 40)
 ```
 
-#### Q2.b: Numbers Divisible by 3 or 5 (but not both)
-**Question:** Print numbers 1-100 divisible by 3 or 5 but NOT both using continue/break.
+#### Q7.b: Assertions and Compressing Files
+**Question:** Describe the following: i) Assertions ii) Compressing files.
 
-**Answer (8 marks):**
+**Answer (10 marks):**
+- **Assertions:** Used to test if a condition is true while debugging.
+- If the condition becomes false, Python raises an **AssertionError**.
+- **Compressing files:** Combines one or more files into a compressed archive, usually using the `zipfile` module.
 ```python
-print("Numbers divisible by 3 or 5 but not both:")
-for i in range(1, 101):
-    if (i % 3 == 0 and i % 5 == 0):
-        continue  # Skip if divisible by both
-    if (i % 3 == 0 or i % 5 == 0):
-        print(i, end=" ")
-```
+# Assertions
+age = 18
+assert age >= 18, "Age must be 18 or above"
 
-#### Q2.a: Collatz Sequence
-**Question:** Describe Collatz 3n+1 sequence and explain iteration/conditional statements in implementation.
+# Compressing files
+import zipfile
 
-**Answer (8 marks):**
-```python
-# Collatz Sequence: If n is even → n/2, if odd → 3n+1, repeat until n=1
-n = int(input("Enter number: "))
-print(f"Collatz sequence for {n}:")
-while n != 1:
-    print(n, end=" → ")
-    if n % 2 == 0:
-        n = n // 2
-    else:
-        n = 3 * n + 1
-print(1)
+with zipfile.ZipFile("archive.zip", "w", zipfile.ZIP_DEFLATED) as zipf:
+    zipf.write("file1.txt")
+    zipf.write("file2.txt")
 
-# Iteration (while loop) repeats until n becomes 1
-# Conditional (if-else) determines operation based on even/odd
+print("Files compressed successfully")
 ```
 
 ---
 
-## MODULE - 2: Strings, Lists & Data Structures
+## MODULE - 5: Object-Oriented Programming
 
-### **SECTION A: Theory Questions (4-5 Marks)**
+### **SECTION A: Q9**
 
-#### Q3.a: String Operations
-**Question:** Explain string operations - slicing, concatenation, repetition, comparison with examples.
+#### Q9.a: __init__() and __str__()
+**Question:** Interpret the significance of __init__() and __str__() method with example.
 
-**Answer (4-5 marks):**
-- **Slicing:** Extracting substring using `string[start:end]`
-  - Example: `"Python"[0:3]` → "Pyt"
-- **Concatenation:** Joining strings with `+`
-  - Example: `"Hello" + " " + "World"` → "Hello World"
-- **Repetition:** Repeating strings with `*`
-  - Example: `"Hi" * 3` → "HiHiHi"
-- **Comparison:** Using `==`, `<`, `>` operators
-  - Example: `"abc" < "def"` → True (alphabetical order)
-
-#### Q3.b: List vs Array
-**Question:** Define list. How is it different from array? Access third element of [3, 6, 9, 12].
-
-**Answer (4 marks):**
-- **List:** Ordered collection of items (any data type) in Python
-- **Differences from Array:**
-  - Lists are dynamic (size changes), arrays have fixed size
-  - Lists can have mixed types, arrays typically same type
-  - Lists built-in Python, arrays from NumPy library
-- **Accessing third element:** `nums = [3, 6, 9, 12]; print(nums[2])` → Output: 9
-
-#### Q4.a: Mutability in Lists
-**Question:** Explain mutability in lists. Difference between modifying and cloning with examples.
-
-**Answer (4-5 marks):**
-- **Mutability:** Lists can be changed after creation (mutable)
-- **Modifying list:**
-  ```python
-  x = [1, 2, 3]
-  x[0] = 99  # Changes original list to [99, 2, 3]
-  y = x      # y points to same object, both change together
-  ```
-- **Cloning list:**
-  ```python
-  x = [1, 2, 3]
-  y = x.copy()  # or y = x[:] - creates new separate list
-  y[0] = 99     # Only y changes, x remains [1, 2, 3]
-  ```
-
----
-
-### **SECTION B: Programming Questions (6-8 Marks)**
-
-#### Q3.c: Count Words in Text
-**Question:** Develop program to count number of words in given line of text.
-
-**Answer (6 marks):**
+**Answer (10 marks):**
+- **__init__()** is the constructor method that initializes object data when an object is created.
+- **__str__()** returns a readable string representation of the object.
+- These methods make classes easier to use and print.
 ```python
-text = input("Enter a line of text: ")
-words = text.split()
-word_count = len(words)
-print(f"Number of words: {word_count}")
+class Student:
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
 
-# Alternative with word frequency:
-word_freq = {}
-for word in words:
-    word_freq[word] = word_freq.get(word, 0) + 1
-print(f"Word frequency: {word_freq}")
+    def __str__(self):
+        return f"Student Name: {self.name}, Marks: {self.marks}"
+
+s = Student("John", 85)
+print(s)
 ```
 
-#### Q4.b: Palindrome Check Using Slicing
-**Question:** Develop program to check if string is palindrome using slicing.
+#### Q9.b: Rectangle Using OOP
+**Question:** Develop a program for constructing the rectangle using the concept of object oriented programming.
 
-**Answer (6 marks):**
+**Answer (10 marks):**
 ```python
-string = input("Enter a string: ")
-# Remove spaces and convert to lowercase
-clean = string.replace(" ", "").lower()
+class Rectangle:
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
 
-# Check if string equals its reverse
-if clean == clean[::-1]:
-    print(f"'{string}' is a palindrome")
-else:
-    print(f"'{string}' is not a palindrome")
+    def area(self):
+        return self.length * self.width
 
-# Explanation: [::-1] reverses string using slicing
-```
+    def perimeter(self):
+        return 2 * (self.length + self.width)
 
-#### Q4.c: Filter Even Numbers
-**Question:** Program that takes list of numbers and returns new list with only even numbers.
+    def display(self):
+        print(f"Rectangle: {self.length} x {self.width}")
+        print(f"Area: {self.area()}")
+        print(f"Perimeter: {self.perimeter()}")
 
-**Answer (6 marks):**
-```python
-numbers = [int(x) for x in input("Enter numbers (space-separated): ").split()]
-
-# Method 1: Using loop
-even_numbers = []
-for num in numbers:
-    if num % 2 == 0:
-        even_numbers.append(num)
-
-# Method 2: Using list comprehension (cleaner)
-even_numbers = [num for num in numbers if num % 2 == 0]
-
-print(f"Even numbers: {even_numbers}")
+rect = Rectangle(10, 5)
+rect.display()
 ```
 
 ---
 
-## MODULE - 3: Dictionaries, NumPy & File Handling
+### **OR**
 
-### **SECTION A: Theory Questions (4-5 Marks)**
+#### Q10.a: Operator Overloading
+**Question:** Explain any polymorphism of operator overloading used in OOP.
 
-#### Q5.c: 'with' Statement in File Handling
-**Question:** Explain the use of 'with' statement in file handling with a program.
-
-**Answer (4 marks):**
-- **Purpose:** Automatically manages file opening and closing
-- **Advantages:**
-  - No need for explicit `close()` call
-  - Ensures file closes even if error occurs
-  - Cleaner, safer code
-- **Example:**
-  ```python
-  with open("file.txt", "r") as f:
-      data = f.read()
-  # File automatically closes here, no .close() needed
-  ```
-
-#### Q5.a: Dictionary Features & Operations
-**Question:** Explain key features of Python dictionaries. How different from lists? Illustrate insertion, deletion, lookup.
-
-**Answer (4-5 marks):**
-- **Features:** Key-value pairs, unordered (Python 3.7+ ordered), mutable
-- **Difference from lists:**
-  - Lists: indexed by position [0,1,2...], dictionaries by key
-  - Dictionaries: unordered access, lists: ordered
-- **Operations:**
-  ```python
-  student = {"name": "John", "age": 20}  # Creation
-  student["marks"] = 85  # Insertion
-  del student["age"]     # Deletion
-  print(student["name"]) # Lookup
-  ```
-
-#### Q5.b: NumPy Masking
-**Question:** What is masking in NumPy? Develop program to illustrate masking to filter array elements.
-
-**Answer (4-6 marks):**
-- **Masking:** Creating boolean array to filter elements meeting condition
-- **Example:**
-  ```python
-  import numpy as np
-  arr = np.array([1, 2, 3, 4, 5, 6])
-  mask = arr > 3           # Boolean mask: [F,F,F,T,T,T]
-  filtered = arr[mask]     # Result: [4, 5, 6]
-  ```
-
-#### Q6.c: Binary vs Text Files
-**Question:** Explain how binary files differ from text files. Illustrate with suitable program segments.
-
-**Answer (4 marks):**
-- **Text Files:**
-  - Contain human-readable characters
-  - Open mode: `"r"`, `"w"`
-  - Platform-specific line endings
-- **Binary Files:**
-  - Contain raw bytes (images, audio, executables)
-  - Open mode: `"rb"`, `"wb"`
-  - No line-ending conversion
-- **Example:**
-  ```python
-  # Text file
-  with open("file.txt", "r") as f:
-      text = f.read()
-  
-  # Binary file
-  with open("image.png", "rb") as f:
-      binary_data = f.read()
-  ```
-
----
-
-### **SECTION B: Programming Questions (8 Marks)**
-
-#### Q5.a: Word Frequency Counter
-**Question:** Develop program to count word frequency in paragraph using dictionary and display top 3 words.
-
-**Answer (8 marks):**
+**Answer (10 marks):**
+- Operator overloading means giving a built-in operator a new meaning for user-defined objects.
+- It is a form of polymorphism because the same operator behaves differently for different object types.
+- Special methods such as `__add__()` are used for this purpose.
 ```python
-paragraph = input("Enter paragraph: ")
-words = paragraph.lower().replace(".", "").replace(",", "").split()
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
-# Count frequency
-word_freq = {}
-for word in words:
-    word_freq[word] = word_freq.get(word, 0) + 1
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
 
-# Sort by frequency and get top 3
-top_3 = sorted(word_freq.items(), key=lambda x: x[1], reverse=True)[:3]
+    def __str__(self):
+        return f"({self.x}, {self.y})"
 
-print("Top 3 most frequent words:")
-for word, count in top_3:
-    print(f"{word}: {count}")
+p1 = Point(1, 2)
+p2 = Point(3, 4)
+p3 = p1 + p2
+print(p3)
 ```
 
-#### Q5.b: NumPy Masking Program
-**Question:** Develop NumPy program to illustrate masking to filter array elements.
+#### Q10.b: Student Marks Program
+**Question:** Develop a program that uses class student which prompts the user to enter marks in three subjects and calculate total marks and percentage.
 
-**Answer (6-8 marks):**
+**Answer (10 marks):**
 ```python
-import numpy as np
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.marks = []
 
-arr = np.array([10, 25, 5, 30, 15, 8, 40])
-print(f"Original array: {arr}")
+    def input_marks(self):
+        for i in range(3):
+            mark = float(input(f"Enter marks in subject {i + 1}: "))
+            self.marks.append(mark)
 
-# Mask: elements > 15
-mask = arr > 15
-filtered = arr[mask]
-print(f"Elements > 15: {filtered}")
+    def total_marks(self):
+        return sum(self.marks)
 
-# Mask: even numbers
-even_mask = arr % 2 == 0
-print(f"Even numbers: {arr[even_mask]}")
+    def percentage(self):
+        return (self.total_marks() / 300) * 100
 
-# Conditional filtering
-result = arr[(arr > 10) & (arr < 35)]
-print(f"Between 10 and 35: {result}")
+    def display_result(self):
+        print(f"\nStudent: {self.name}")
+        print(f"Total Marks: {self.total_marks()}")
+        print(f"Percentage: {self.percentage():.2f}%")
+
+student = Student("Rishi")
+student.input_marks()
+student.display_result()
 ```
-
-#### Q6.b: NumPy Matrix Operations
-**Question:** Develop NumPy program: Create 3×3 matrix, display shape, transpose, mean.
-
-**Answer (6 marks):**
-```python
-import numpy as np
-
-# Create 3x3 random matrix
-matrix = np.random.randint(1, 100, (3, 3))
-print("Matrix:\n", matrix)
-
-# Shape
-print(f"Shape: {matrix.shape}")
-
-# Transpose
-print("Transpose:\n", matrix.T)
-
-# Mean of all elements
-print(f"Mean: {matrix.mean()}")
-```
-
----
-
-## MODULE - 4: Modules, Namespaces & Object-Oriented Basics
-
-### **SECTION A: Theory Questions (4-5 Marks)**
-
-#### Q7.c: Class Attribute vs Instance Attribute
-**Question:** Differentiate between class attribute and instance attribute with suitable program segments.
-
-**Answer (4 marks):**
-- **Class Attribute:** Shared by all instances, defined inside class but outside methods
-  ```python
-  class Student:
-      college = "XYZ College"  # Class attribute
-      def __init__(self, name):
-          self.name = name     # Instance attribute
-  ```
-- **Instance Attribute:** Unique to each object, defined in `__init__`
-- **Difference:**
-  - Class: shared memory, accessed via `Class.attribute` or `obj.attribute`
-  - Instance: individual memory, accessed via `obj.attribute`
-  - Changing class attribute affects all instances; changing instance affects only that object
-
-#### Q8.c: 'is' vs '==' Operators
-**Question:** Explain difference between 'is' and '==' using immutable objects.
-
-**Answer (4 marks):**
-- **`==`:** Compares VALUES (content)
-- **`is`:** Compares IDENTITY (memory location)
-- **Example with immutable objects:**
-  ```python
-  a = 5
-  b = 5
-  print(a == b)      # True (same value)
-  print(a is b)      # True (same object - Python caches small integers)
-  
-  x = "hello"
-  y = "hello"
-  print(x == y)      # True (same value)
-  print(x is y)      # True (string interning in Python)
-  
-  c = [1, 2]
-  d = [1, 2]
-  print(c == d)      # True (same content)
-  print(c is d)      # False (different objects)
-  ```
-
-#### Q7.a: Random & Time Modules
-**Question:** Explain use of random and time modules in Python. Develop program simulating stopwatch.
-
-**Answer (4-8 marks):**
-```python
-import random
-import time
-
-# Random module: generates random numbers
-# time module: works with time delays and timing
-
-print("Simple Stopwatch Simulator:")
-num_intervals = 3
-times = []
-
-for i in range(num_intervals):
-    interval = random.uniform(1, 5)  # Random delay 1-5 seconds
-    times.append(interval)
-    print(f"Interval {i+1}: {interval:.2f} seconds")
-    time.sleep(interval)
-
-avg_time = sum(times) / len(times)
-print(f"Average time: {avg_time:.2f} seconds")
-```
-
-#### Q7.b: Namespaces & LEGB Rule
-**Question:** Explain namespaces in Python. Develop program illustrating LEGB rule.
-
-**Answer (4-8 marks):**
-```python
-# LEGB: Local, Enclosing, Global, Built-in
-
-x = "Global"  # Global scope
-
-def outer():
-    x = "Enclosing"  # Enclosing scope
-    
-    def inner():
-        x = "Local"  # Local scope
-        print(x)     # Finds 'Local' first (L)
-    
-    inner()
-    print(x)         # Finds 'Enclosing' (E)
-
-outer()
-print(x)             # Finds 'Global' (G)
-
-# Python searches: Local → Enclosing → Global → Built-in
-```
-
----
-
-### **SECTION B: Programming Questions (8 Marks)**
-
-#### Q8.a: Custom Module Creation
-**Question:** Create utilities.py with functions for square, cube, factorial. Import in another file using all 3 variants.
-
-**Answer (8 marks):**
-
-**File 1: utilities.py**
-```python
-def square(n):
-    return n ** 2
-
-def cube(n):
-    return n ** 3
-
-def factorial(n):
-    if n <= 1:
-        return 1
-    return n * factorial(n - 1)
-```
-
-**File 2: main.py**
-```python
-# Import variant 1: Import entire module
-import utilities
-print(utilities.square(5))      # 25
-print(utilities.cube(3))        # 27
-
-# Import variant 2: Import specific functions
-from utilities import square, cube
-print(square(4))                # 16
-print(cube(2))                  # 8
-
-# Import variant 3: Import all with alias
-from utilities import *
-print(factorial(5))             # 120
-```
-
-#### Q8.b: Custom Module for Binomial Coefficient
-**Question:** Develop custom module with factorial function. Import to calculate binomial coefficient.
-
-**Answer (8 marks):**
-
-**File 1: math_operations.py**
-```python
-def factorial(n):
-    if n <= 1:
-        return 1
-    return n * factorial(n - 1)
-```
-
-**File 2: binomial.py**
-```python
-from math_operations import factorial
-
-def binomial_coefficient(n, r):
-    """Calculate C(n,r) = n! / (r! * (n-r)!)"""
-    if r > n:
-        return 0
-    return factorial(n) // (factorial(r) * factorial(n - r))
-
-n = int(input("Enter n: "))
-r = int(input("Enter r: "))
-result = binomial_coefficient(n, r)
-print(f"C({n},{r}) = {result}")
-```
-
----
-
-## MODULE - 5: Object-Oriented Programming & Exception Handling
-
-### **SECTION A: Theory Questions (4-5 Marks)**
-
-#### Q9.c: Operator Overloading
-**Question:** What is operator overloading? Illustrate with example using `__add__()`.
-
-**Answer (4 marks):**
-- **Definition:** Redefining operators (+, -, *, etc.) to work with custom objects
-- **Method:** Use special methods like `__add__()`, `__sub__()`, etc.
-- **Example:**
-  ```python
-  class Point:
-      def __init__(self, x, y):
-          self.x = x
           self.y = y
       
       def __add__(self, other):
